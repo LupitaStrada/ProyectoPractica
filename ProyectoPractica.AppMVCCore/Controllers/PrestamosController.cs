@@ -19,10 +19,23 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         }
 
         // GET: Prestamos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Prestamo prestamo, int topRegistro=10)
         {
-            var proyectoPracticaContext = _context.Prestamos.Include(p => p.Libro).Include(p => p.Usuario);
-            return View(await proyectoPracticaContext.ToListAsync());
+
+            var query = _context.Prestamos.AsQueryable();
+            query = query.Include(p => p.Libro);
+            query = query.Include(p => p.Usuario);
+            if (prestamo.Libro!=null && !string.IsNullOrWhiteSpace(prestamo.Libro.Titulo))
+                query = query.Where(s => s.Libro.Titulo.Contains(prestamo.Libro.Titulo));
+            if (prestamo.FechaPrestamo.HasValue) // Verifica si la propiedad FechaPrestamo tiene un valor
+            {
+                // Filtrar por la fecha exacta
+                query = query.Where(p => p.FechaPrestamo.Value.Date == prestamo.FechaPrestamo.Value.Date);
+            };
+            if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Prestamos/Details/5

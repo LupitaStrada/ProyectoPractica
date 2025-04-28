@@ -19,7 +19,7 @@ public partial class Usuario
     public string Email { get; set; } = null!;
  
     public string Rol { get; set; } = null!;
-
+    [Display(Name = "Fecha de registro")]
     public DateTime? FechaRegistro { get; set; }
 
     public virtual ICollection<Prestamo> Prestamos { get; set; } = new List<Prestamo>();

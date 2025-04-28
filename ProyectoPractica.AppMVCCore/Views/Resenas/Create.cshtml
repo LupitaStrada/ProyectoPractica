@@ -20,27 +20,31 @@
                 <label asp-for="UsuarioId" class="control-label"></label>
                 <select asp-for="UsuarioId" class ="form-control" asp-items="ViewBag.UsuarioId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="Calificacion" class="control-label"></label>
-                <input asp-for="Calificacion" class="form-control" />
-                <span asp-validation-for="Calificacion" class="text-danger"></span>
+            <div>
+                <label for="calificacion">Calificación:</label>
+                <select class="form-control" id="calificacion" name="calificacion">
+                    <option value="">Seleccionar calificación</option>
+                    <option value="5">Excelente</option>
+                    <option value="4">Bueno</option>
+                    <option value="3">Regular</option>
+                    <option value="2">Malo</option>
+                    <option value="1">Muy malo</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Comentario" class="control-label"></label>
                 <input asp-for="Comentario" class="form-control" />
                 <span asp-validation-for="Comentario" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="row mt-3">
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

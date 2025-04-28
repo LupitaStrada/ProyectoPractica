@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoPractica.AppMVCCore.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProyectoPractica.AppMVCCore.Controllers
 {
@@ -19,10 +20,18 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         }
 
         // GET: Resenas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( Resena resena, int topRegistro=10)
         {
-            var proyectoPracticaContext = _context.Resenas.Include(r => r.Libro).Include(r => r.Usuario);
-            return View(await proyectoPracticaContext.ToListAsync());
+            var query = _context.Resenas.AsQueryable();
+            query = query.Include(p => p.Libro);
+            query = query.Include(p => p.Usuario);
+            if ( resena.Libro != null && !string.IsNullOrWhiteSpace(resena.Libro.Titulo))
+                query = query.Where(s => s.Libro.Titulo.Contains(resena.Libro.Titulo));
+
+            if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Resenas/Details/5

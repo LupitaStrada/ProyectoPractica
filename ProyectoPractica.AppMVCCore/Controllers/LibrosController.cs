@@ -22,7 +22,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         public async Task<IActionResult> Index( Libro libro, int topRegistro=10)
         {
             var query = _context.Libros.AsQueryable();
-          
+            query = query.Include(p => p.Autor);
+            query = query.Include(p => p.Editorial);
             if (!string.IsNullOrWhiteSpace(libro.Titulo))
                 query = query.Where(s => s.Titulo.Contains(libro.Titulo));
             if (libro.Precio > 0)

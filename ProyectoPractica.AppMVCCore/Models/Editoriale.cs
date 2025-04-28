@@ -14,7 +14,7 @@ public partial class Editoriale
     public string? Direccion { get; set; }
 
     public string? Telefono { get; set; }
-
+    [EmailAddress]
     public string? Email { get; set; }
 
     public virtual ICollection<Libro> Libros { get; set; } = new List<Libro>();

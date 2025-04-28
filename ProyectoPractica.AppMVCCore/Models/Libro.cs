@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoPractica.AppMVCCore.Models;
@@ -16,8 +17,9 @@ public partial class Libro
     [Required(ErrorMessage = "El campo Stock es obligatorio.")]
     public int Stock { get; set; }
 
+    [Display(Name="Editorial")]
     public int? EditorialId { get; set; }
-
+    [Display(Name = "Autor")]
     public int? AutorId { get; set; }
 
     public DateOnly? FechaPublicacion { get; set; }

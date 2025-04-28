@@ -1,10 +1,10 @@
 ﻿@model ProyectoPractica.AppMVCCore.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle";
 }
 
-<h1>Details</h1>
+<h1>Detalle</h1>
 
 <div>
     <h4>Usuario</h4>
@@ -42,7 +42,5 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-success">Regresar</a>

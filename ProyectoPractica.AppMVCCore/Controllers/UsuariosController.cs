@@ -236,7 +236,7 @@ namespace ProyectoPractica.AppMVCCore.Controllers
                     ModelState.AddModelError("", ex.Message);
                     return View(usuario);
                 }
-                return RedirectToAction(nameof(Index));
+
             }
         }
         [AllowAnonymous]
