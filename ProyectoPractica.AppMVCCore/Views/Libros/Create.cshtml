@@ -1,11 +1,10 @@
 ﻿@model ProyectoPractica.AppMVCCore.Models.Libro
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
 }
 
-<h1>Create</h1>
-
+<h1>Crear</h1>
 <h4>Libro</h4>
 <hr />
 <div class="row">
@@ -45,17 +44,15 @@
                 <input asp-for="FechaPublicacion" class="form-control" />
                 <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="row mt-3">
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

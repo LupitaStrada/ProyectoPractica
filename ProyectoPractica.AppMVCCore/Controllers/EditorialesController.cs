@@ -19,9 +19,21 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         }
 
         // GET: Editoriales
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Editoriale editorial, int topRegistro = 10)
         {
-            return View(await _context.Editoriales.ToListAsync());
+            var query = _context.Editoriales.AsQueryable();
+            //  query = query.Where(s => s.Nombre.Contains(autore.Nombre));
+            if (!string.IsNullOrWhiteSpace(editorial.Nombre))
+                query = query.Where(s => s.Nombre.Contains(editorial.Nombre));
+            if (!string.IsNullOrWhiteSpace(editorial.Direccion))
+                query = query.Where(s => s.Direccion.Contains(editorial.Direccion));
+            if (!string.IsNullOrWhiteSpace(editorial.Email))
+                query = query.Where(s => s.Email.Contains(editorial.Email));
+            if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
+           
         }
 
         // GET: Editoriales/Details/5

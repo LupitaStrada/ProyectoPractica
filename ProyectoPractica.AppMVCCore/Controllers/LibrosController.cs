@@ -19,10 +19,19 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         }
 
         // GET: Libros
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( Libro libro, int topRegistro=10)
         {
-            var proyectoPracticaContext = _context.Libros.Include(l => l.Autor).Include(l => l.Editorial);
-            return View(await proyectoPracticaContext.ToListAsync());
+            var query = _context.Libros.AsQueryable();
+          
+            if (!string.IsNullOrWhiteSpace(libro.Titulo))
+                query = query.Where(s => s.Titulo.Contains(libro.Titulo));
+            if (libro.Precio > 0)
+                query = query.Where(s => s.Precio == libro.Precio);
+           
+                if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Libros/Details/5
