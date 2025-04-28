@@ -48,8 +48,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         // GET: Libros/Create
         public IActionResult Create()
         {
-            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Id");
-            ViewData["EditorialId"] = new SelectList(_context.Editoriales, "Id", "Id");
+            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre");
+            ViewData["EditorialId"] = new SelectList(_context.Editoriales, "Id", "Nombre");
             return View();
         }
 
@@ -84,8 +84,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
             {
                 return NotFound();
             }
-            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Id", libro.AutorId);
-            ViewData["EditorialId"] = new SelectList(_context.Editoriales, "Id", "Id", libro.EditorialId);
+            ViewData["AutorId"] = new SelectList(_context.Autores, "Id", "Nombre", libro.AutorId);
+            ViewData["EditorialId"] = new SelectList(_context.Editoriales, "Id", "Nombre", libro.EditorialId);
             return View(libro);
         }
 

@@ -19,9 +19,16 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         }
 
         // GET: Autores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Autore autore, int topRegistro = 10)
         {
-            return View(await _context.Autores.ToListAsync());
+            var query = _context.Autores.AsQueryable();
+              //  query = query.Where(s => s.Nombre.Contains(autore.Nombre));
+            if (!string.IsNullOrWhiteSpace(autore.Nombre))
+                query = query.Where(s => s.Nombre.Contains(autore.Nombre));
+            if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Autores/Details/5

@@ -48,8 +48,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         // GET: Prestamos/Create
         public IActionResult Create()
         {
-            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Titulo");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "NombreUsuario");
             return View();
         }
 
@@ -84,8 +84,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
             {
                 return NotFound();
             }
-            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Id", prestamo.LibroId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", prestamo.UsuarioId);
+            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Titulo", prestamo.LibroId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "NombreUsuario", prestamo.UsuarioId);
             return View(prestamo);
         }
 

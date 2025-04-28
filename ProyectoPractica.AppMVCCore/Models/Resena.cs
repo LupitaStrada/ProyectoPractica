@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoPractica.AppMVCCore.Models;
 
@@ -10,7 +11,7 @@ public partial class Resena
     public int? LibroId { get; set; }
 
     public int? UsuarioId { get; set; }
-
+    [Required(ErrorMessage = "El Calificacion  es obligatorio.")]
     public int Calificacion { get; set; }
 
     public string? Comentario { get; set; }

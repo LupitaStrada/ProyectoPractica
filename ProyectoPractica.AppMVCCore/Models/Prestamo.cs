@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace ProyectoPractica.AppMVCCore.Models;
 
@@ -14,7 +16,7 @@ public partial class Prestamo
     public DateTime? FechaPrestamo { get; set; }
 
     public DateOnly? FechaDevolucion { get; set; }
-
+    [Required(ErrorMessage = "El campo Estado es obligatorio.")]
     public string Estado { get; set; } = null!;
 
     public virtual Libro? Libro { get; set; }

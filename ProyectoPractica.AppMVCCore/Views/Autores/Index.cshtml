@@ -1,15 +1,48 @@
 ﻿@model IEnumerable<ProyectoPractica.AppMVCCore.Models.Autore>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Autores";
+    var modelBuscar = new Autore();
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Autores</h1>
+<form asp-action="Index">
+    <div class="row">
+        <div class="form-group col-4">
+            <label asp-for="@modelBuscar.Nombre"></label>
+            <input name="nombre" class="form-control" />
+        </div>
+        <div class="form-group col-4">
+            <label asp-for="@modelBuscar.Nombre"></label>
+            <input name="precio" class="form-control" />
+        </div>
+       @*  <div class="form-group col-4">
+            <label asp-for="@modelBuscar.Marca" class="control-label text-light"></label>
+            <input name="marca" class="form-control" />
+        </div> *@
+    </div>
+    <div class="row">
+        <div class="form-group col-3">
+            <label>Cant. Registros</label>
+            <select name="topRegistro" class="form-control">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="0">Todos</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row mt-3">
+            <div class="form-group mt-3 mb-3">
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+                <a asp-action="Create" class="btn btn-outline-danger"><i class="bi bi-plus-circle" title="Ir a crear"></i></a>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
@@ -51,3 +84,16 @@
 }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                searching: false,
+                ordering: false,
+                 "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoPractica.AppMVCCore.Models;
 
 public partial class Libro
 {
     public int Id { get; set; }
-
+    [Required(ErrorMessage = "El campo TItulo es obligatorio.")]
     public string Titulo { get; set; } = null!;
 
     public string? Descripcion { get; set; }
-
+    [Required(ErrorMessage = "El campo Precio es obligatorio.")]
     public decimal Precio { get; set; }
-
+    [Required(ErrorMessage = "El campo Stock es obligatorio.")]
     public int Stock { get; set; }
 
     public int? EditorialId { get; set; }

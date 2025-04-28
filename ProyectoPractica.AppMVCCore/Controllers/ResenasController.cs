@@ -48,8 +48,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
         // GET: Resenas/Create
         public IActionResult Create()
         {
-            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Titulo");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "NombreUsuario");
             return View();
         }
 
@@ -84,8 +84,8 @@ namespace ProyectoPractica.AppMVCCore.Controllers
             {
                 return NotFound();
             }
-            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Id", resena.LibroId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", resena.UsuarioId);
+            ViewData["LibroId"] = new SelectList(_context.Libros, "Id", "Titulo", resena.LibroId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "NombreUsuario", resena.UsuarioId);
             return View(resena);
         }
 
